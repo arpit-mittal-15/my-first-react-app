@@ -2,9 +2,41 @@ form{
   height: 90vh;
   width: 50vw;
   min-width: 500px;
-  background-color: green;
   margin: auto;
+  box-shadow: 0 0 15px black;
+  border-radius: 15px;
+  padding: 5px 10px 10px 15px;
+  overflow: scroll;
 }
 h1{
   text-align: center;
+  color: rgb(63, 189, 0);
+}
+input:not([type="radio"]):not([type="checkbox"]){
+  box-sizing: border-box;
+  height: 30px;
+  width: 90%;
+  border-radius: 3px;
+  border: 1px solid;
+  margin: 3px 0px;
+  padding: 5px;
+}
+#resume{
+  height: 35px;
+}
+#about{
+  height: 100px;
+}
+section{
+  margin: -2px;
+  padding: 0px;
+}
+button{
+  height: 40px;
+  width: 100px;
+  background-color: rgb(0, 172, 0);
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-right: 10px;
+  border: none;
 }
