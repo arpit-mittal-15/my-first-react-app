@@ -54,8 +54,11 @@ export default function App(){
           })
             .then(res => res.json())
             .then(data => {
-              console.log(data)
-            });
+              if(data.status == "success"){
+                console.log(data)
+              }
+            })
+            .catch(err => console.log(err))
         }
       }}>Submit</button>
     </form>
