@@ -41,24 +41,21 @@ export default function App(){
         document.getElementById("resume").value = "";
       }}>Reset</button> 
 
-      <button onClick={(e) => {
+      <button type='submit' onClick={(e) => {
         e.preventDefault();
         if(userDetails){
-          fetch("https://jsonplaceholder.typicode.com/posts", {
+          console.log(JSON.stringify(userDetails));
+          fetch("http://localhost:8000/api/detail", {
             method: "POST",
-            body: JSON.stringify(userDetails),
             headers: {
-              'Content-type': 'application/json; charset=UTF-8',
+              'Content-Type': 'application/json'
             },
+            body: JSON.stringify(userDetails),
           })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log("Successful!");
-              console.log(data);
-            })
-            .catch((err) => {
-              console.log(err)
-            })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data)
+            });
         }
       }}>Submit</button>
     </form>
