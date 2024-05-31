@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {Form} from "./components/Form.jsx"
+import {Successful} from "./components/successful.jsx"
 import './App.css'
 
 const initialDetails = {
@@ -21,10 +22,14 @@ const initialDetails = {
 
 export default function App(){
 
-  
   const [userDetails, setUserDetails] = useState(initialDetails);
+  const [successful, setSuccessful] = useState(false)
 
   return(
+    <>
+    <div id="successMsg">
+      {successful && <Successful/>}
+    </div>
     <form>
       <Form userDetails={userDetails} setUserDetails={setUserDetails}/>
       {console.log(userDetails)}
@@ -55,12 +60,13 @@ export default function App(){
             .then(res => res.json())
             .then(data => {
               if(data.status == "success"){
-                console.log(data)
+                setSuccessful(true)
               }
             })
             .catch(err => console.log(err))
         }
       }}>Submit</button>
     </form>
+    </>
   )
 }

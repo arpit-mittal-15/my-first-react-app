@@ -8,6 +8,12 @@ form{
   padding: 5px 10px 10px 15px;
   overflow: scroll;
 }
+#successMsg{
+  font-size: 10vh;
+  text-align: center;
+  margin: auto;
+  color:rgb(63, 189, 0)
+}
 h1{
   text-align: center;
   color: rgb(63, 189, 0);

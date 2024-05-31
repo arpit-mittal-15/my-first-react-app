@@ -32,7 +32,6 @@ const detailSchema = new mongoose.Schema({
   },
   about: {
     type: String,
-    required: true,
   },
 }, 
 {timestamps: true}
