@@ -14,7 +14,6 @@ const initialDetails = {
     maths: false,
     physics: false
   },
-  resume:"",
   url: "",
   codingLang:"js",
   about: "",
@@ -23,7 +22,10 @@ const initialDetails = {
 export default function App(){
 
   const [userDetails, setUserDetails] = useState(initialDetails);
-  const [successful, setSuccessful] = useState(false)
+  const [resumeFile, setResumeFile] = useState("");
+  const [successful, setSuccessful] = useState(false);
+
+  
 
   return(
     <>
@@ -31,8 +33,9 @@ export default function App(){
       {successful && <Successful/>}
     </div>
     <form>
-      <Form userDetails={userDetails} setUserDetails={setUserDetails}/>
+      <Form userDetailsArray={{userDetails, resumeFile}} setUserDetailsArray={{setUserDetails, setResumeFile}}/>
       {console.log(userDetails)}
+      {console.log(resumeFile)}
 
       <button onClick={(e) => {
         e.preventDefault();
@@ -46,7 +49,7 @@ export default function App(){
         document.getElementById("resume").value = "";
       }}>Reset</button> 
 
-      <button type='submit' onClick={(e) => {
+      <button onClick={(e) => {
         e.preventDefault();
         if(userDetails){
           console.log(JSON.stringify(userDetails));
@@ -62,8 +65,22 @@ export default function App(){
               if(data.status == "success"){
                 setSuccessful(true)
               }
+              else if (data.error == "Incomplete Data"){
+                console.log("Incomplete Data")
+              }
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
+
+          // const formData = new FormData();
+          // console.log(formData.get("resume"))
+          // formData.append("resume", resumeFile ,resumeFile.name);
+
+          // console.log(formData.get("resume"))
+
+          // fetch("http://localhost:8000/api/resume", {
+          //   method: "POST",
+          //   body: formData,
+          // })
         }
       }}>Submit</button>
     </form>

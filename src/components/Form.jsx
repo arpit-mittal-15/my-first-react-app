@@ -1,4 +1,6 @@
-export function Form({userDetails, setUserDetails}){
+export function Form({userDetailsArray, setUserDetailsArray}){
+  const {userDetails, resumeFile} = userDetailsArray;
+  const {setUserDetails, setResumeFile} = setUserDetailsArray;
   return (
     <>
       <h1>Form in React</h1>
@@ -33,6 +35,7 @@ export function Form({userDetails, setUserDetails}){
       <label htmlFor="email">Enter email:</label>
       <br/>
       <input type="email" id="email" 
+        autoComplete="off"
         value={userDetails.email} 
         onChange={(e) => {
           setUserDetails(
@@ -113,10 +116,10 @@ export function Form({userDetails, setUserDetails}){
       </section>
       <br/>
       <section id="resumeSection">
-      <label>Upload Resume:</label><br/>
-      <input type="file" name="resume" id="resume" onChange={(e)=>
-        setUserDetails((currentState) => ({...currentState, resume:e.target.files[0]}))
-      }/>
+        <label>Upload Resume:</label><br/>
+        <input type="file" name="resume" id="resume" onChange={(e)=>
+          setResumeFile(e.target.files[0])
+        }/>
       </section>
       <br/>
       <section id="urlSection">
@@ -133,7 +136,7 @@ export function Form({userDetails, setUserDetails}){
       </section>
       <br/>
       <section id="favLangSection">
-      <label htmlFor="langs">Choose a language:</label>
+      <label htmlFor="lang">Choose a language:</label>
       <select name="lang" id="lang" value={userDetails.codingLang} 
         onChange={(e)=>{
           setUserDetails((currentState) => (
